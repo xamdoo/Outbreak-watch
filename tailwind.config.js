@@ -20,7 +20,13 @@ module.exports = {
       },
       minHeight: {
         '100': '100vh',
-      }
+      },
+      backgroundColor: {
+        'brand-twitter': '#1da1f2',
+        'brand-twitter-hover': '#0c91e3',
+        'brand-github': "#24292e",
+        'brand-github-bg-hover': '#000'
+      },
     },
   },
   plugins: [],

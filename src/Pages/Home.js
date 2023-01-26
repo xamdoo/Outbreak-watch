@@ -5,8 +5,8 @@ import RightSideBar from '../Components/RightSideBar'
 
 function Home() {
     return (
-        <main className='bg-gradient-to-bl from-red-50 to-slate-200 h-fit border'>
-            <div className='h-screen w-full max-w-screen-xl mx-auto px-4 py-3 flex flex-1 justify-between'>
+        <main className='bg-gradient-to-bl from-red-50 to-slate-200 '>
+            <div className='w-full max-w-screen-xl mx-auto px-4 py-2 flex flex-1 justify-between'>
                 <LeftSideBar/>
                 <Content/>
                 <RightSideBar/>

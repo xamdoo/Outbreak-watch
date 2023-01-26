@@ -34,7 +34,7 @@ function Content() {
                         <a href="/" className="text-xs text-gray-600"><time>Jan 16</time></a>
                     </div>
                 </div>
-                <div className="ml-16 -mt-4 -mt-2">
+                <div className="ml-16 -mt-2">
                         <h2 className="text-3xl m-auto mb-2">
                             <a href="/" className="text-black font-bold hover:text-blue-700">Meme Monday 🌻</a>
                         </h2>
