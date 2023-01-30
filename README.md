@@ -1,6 +1,7 @@
 # Outbreak Watch
 
-Welcome to the Outbreak Watch GitHub repository! This project is a community-driven blog for staying informed about the latest outbreaks and sharing knowledge and experiences. The layout of the website was inspired by devto.com frontend.
+Welcome to the Outbreak Watch GitHub repository! This project is a community-driven blog for staying informed about the latest outbreaks and sharing knowledge and experiences. The layout of the website was inspired by devto.com.
+
 ## Technologies Used
 
 - React.js (frontend)
