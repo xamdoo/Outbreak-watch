@@ -2,7 +2,7 @@ import React from 'react'
 
 function RightSideBar() {
     return (
-        <div className="w-1/3 -mr-6">
+        <div className="w-1/4 -mr-6">
             <aside className="border m-2 flex flex-col rounded-md bg-whites">
                 <section className="p-5 rounded-md bg-white">
                     <header className="flex justify-between border-b border-gray-300 pb-2">

@@ -5,18 +5,23 @@ import { toast } from 'react-toastify';
 import axios from 'axios';
 import UserContext from '../Utils/UserContext';
 import { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function Login(){
     const [inputs, setInputs] = useState({})
     const [isShown, setIsShown] = useState(false);
     const togglePasswordVisibility = () => setIsShown(!isShown);
     const {setUser} = useContext(UserContext)
+    const navigate = useNavigate()
+
+
     function handleOnLogIn(){
         axios.post("http://localhost:8000/auth/login", inputs)
         .then((res)=>{
             localStorage.setItem("token", res.data.token)
             setUser(true)
             toast.success(res.data.message)
+            navigate("/")
         }).catch((e)=>{
             toast.error(e.response.data.message)
         })

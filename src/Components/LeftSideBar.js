@@ -3,12 +3,16 @@ import { Link } from 'react-router-dom'
 import { FcHome, FcReading, FcVideoCall, FcIdea, FcShop, FcContacts, FcLike } from 'react-icons/fc';
 import { FaPodcast } from 'react-icons/fa';
 import { SlBookOpen } from 'react-icons/sl';
+import UserContext from '../Utils/UserContext'
+import { useContext } from 'react';
 
 
 function LeftSideBar() {
+    const {user} = useContext(UserContext)
     return (
-        <div  className="w-1/3 -ml-8 h-fit">
+        <div  className="w-1/4 ml-3 h-fit">
             <React.Fragment>
+                {!user &&
                 <div className="border m-2 ml-6 flex flex-col gap-4 p-6 pb-6 rounded-md border-zinc-100 bg-white">
                     <h1 className="font-bold text-xl leading-tight">Outbreak Watch! a community of public health enthusiasts.</h1>
                     <span>Stay informed about the latest 
@@ -17,7 +21,7 @@ function LeftSideBar() {
                         <button className="border rounded-md text-white bg-red-900 py-1.5 font-sans hover:bg-white hover:text-red-900 hover:border-red-900"><Link to='/signup'>Get Started</Link></button>
                         <button className='font-sans hover:underline'><Link to='/login'>Sign In</Link></button>
                     </div>
-                </div>
+                </div>}
                 <ul className="flex flex-col items-start text-md font-normal py-2 mt-4 ml-10 gap-3 w-1/2">
                     <li>
                         <Link to='/' className="flex gap-2 hover:underline hover:cursor-pointer">
@@ -80,7 +84,7 @@ function LeftSideBar() {
                     <header className=" flex items-center justify-between">
                     <h2 className="text-md font-bold">Popular Tags</h2>
                     </header>
-                    <div className=" gap-1 mb-2 mt-3 ml-2 flex flex-col overflow-y-scroll h-40 scrollbar-purple-500 scrollbar-w-2">
+                    <div className=" gap-1 mb-2 mt-3 ml-2 flex flex-col overflow-y-scroll h-44 scrollbar-purple-500 scrollbar-w-2">
                         <a href="/" className= "hover:bg-red-200 mr-1 p-1">#healthmanagement</a>
                         <a href="/" className=" hover:bg-red-200 mr-1 p-1">#SDGs</a>
                         <a href="/" className=" hover:bg-red-200 mr-1 p-1">#communityhealth</a>

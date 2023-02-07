@@ -19,10 +19,10 @@ function Home() {
     })
 
     return (
-        <main className='bg-gradient-to-bl from-red-50 to-slate-200 '>
-            <div className='w-full max-w-screen-xl mx-auto px-4 py-2 flex flex-1 justify-between'>
+        <main className='bg-gradient-to-bl from-red-50 to-slate-200'>
+            <div className='max-w-screen-xl mx-auto py-2 justify-between flex'>
                 <LeftSideBar/>
-                <div>
+                <div className=''>
                     <BlogTitle/>
                     <div className='flex flex-col gap-3'>
                         {blogs.map((blog)=> <BlogCard data={blog}/>)}

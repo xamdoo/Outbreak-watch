@@ -14,12 +14,15 @@ import Profile from './Pages/Profile';
 import ChangePassword from './Pages/ChangePassword';
 import { useEffect, useState } from 'react';
 import UserContext from './Utils/UserContext';
+import ProtectRoute from './ProtectRoute';
+import EditPost from './Pages/EditPost';
 
 function App() {
 
   const [loading, setLoading] = useState(true)
   const [user, setUser] = useState(false)
-
+  
+  
   useEffect(()=>{
     if(localStorage.getItem("token") != null){
       setUser(true)
@@ -37,13 +40,14 @@ function App() {
             <Route path="/" element={<Home/>}/>
             <Route path="/login" element={<Login/>}/>
             <Route path="/signup" element={<Signup/>}/>
-            <Route path='/blog' element={<Blog/>}/>
+            <Route path='/blog/:id' element={<Blog/>}/>
             <Route path='/userprofile' element={<UserProfile/>}/>
 
-            <Route path='/new' element={<CreatePost/>}/>
-            <Route path='/dashboard' element={<Dashboard/>}/>
-            <Route path='/profile' element={<Profile/>}/>
-            <Route path='/change' element={<ChangePassword/>}/>
+            <Route path='/new' element={<ProtectRoute><CreatePost/></ProtectRoute>}/>
+            <Route path='/dashboard' element={<ProtectRoute><Dashboard/></ProtectRoute>}/>
+            <Route path='/profile' element={<ProtectRoute><Profile /></ProtectRoute>}/>
+            <Route path='/change' element={<ProtectRoute><ChangePassword/></ProtectRoute>}/>
+            <Route path='/edit/:id' element={<ProtectRoute><EditPost/></ProtectRoute>}/>
           </Routes>    
         </BrowserRouter>
       </UserContext.Provider>

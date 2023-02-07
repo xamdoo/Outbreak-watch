@@ -7,7 +7,6 @@ import UserContext from '../Utils/UserContext'
 
 function Navbar(){
     const {user} = useContext(UserContext)
-
     return (
         <div className="flex justify-between py-2 px-5 border-b-2">
             <div className='flex ml-5 mt-1'>
@@ -27,7 +26,7 @@ function Navbar(){
                     <Link to="">
                         <BsBell className='mt-2 w-7 h-7 hover:bg-red-100 hover:rounded-lg hover:border'/>
                     </Link>
-                    <Link to="">
+                    <Link to={'/dashboard'}>
                         <div className='h-12 w-12 '>
                             <img src='../profile.png' alt='profile' className='rounded-full'/>
                         </div>
