@@ -4,8 +4,8 @@ function BlogAuthor(props){
         <div className="bg-gray-900 rounded-t-md h-8"></div>
         <div className="px-5">
             <div className="flex items-end space-x-2">
-                <div className="h-12 w-12">               
-                    <img className="rounded-full" src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8dXNlcnxlbnwwfHwwfHw%3D&w=1000&q=80" alt=""/>
+                <div className="">               
+                    <img className="w-16 h-16  rounded-full" src={`http://localhost:8000/${props.user.file}`} alt=""/>
                 </div>
                 <h4 className="font-bold text-xl">{props.user.firstName} {props.user.secondName}</h4>
             </div>

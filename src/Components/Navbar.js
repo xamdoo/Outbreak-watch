@@ -1,12 +1,32 @@
-import { useContext } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { BsSearch, BsBell } from 'react-icons/bs'
 import { Link } from 'react-router-dom'
 import UserContext from '../Utils/UserContext'
+import axios from 'axios'
 
 
 
 function Navbar(){
     const {user} = useContext(UserContext)
+    const token = localStorage.getItem("token")
+    const [image, setImage] = useState(null);
+
+
+    useEffect(() => {
+        axios
+        .get(`http://localhost:8000/auth/user`, {
+            headers: {
+            Authorization: token,
+            },
+        })
+        .then((res) => {
+            setImage(`http://localhost:8000/${res.data.user.file}`)
+        })
+        .catch((e) => {
+            console.log(e);
+        });
+    });
+
     return (
         <div className="flex justify-between py-2 px-5 border-b-2">
             <div className='flex ml-5 mt-1'>
@@ -28,7 +48,7 @@ function Navbar(){
                     </Link>
                     <Link to={'/dashboard'}>
                         <div className='h-12 w-12 '>
-                            <img src='../profile.png' alt='profile' className='rounded-full'/>
+                            <img src={image} alt='profile' className='rounded-full h-12 w-12'/>
                         </div>
                     </Link>
                 </div>) : (

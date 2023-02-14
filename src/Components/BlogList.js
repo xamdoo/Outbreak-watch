@@ -2,13 +2,13 @@ import {CiEdit} from "react-icons/ci"
 import { MdOutlineDelete } from "react-icons/md"
 import { useEffect, useState } from "react"
 import axios from "axios"
-import { Link, useParams } from "react-router-dom"
+import { Link } from "react-router-dom"
 import { toast } from "react-toastify"
 
 function BlogList(){
     const token = localStorage.getItem("token")
     const [blogs, setBlogs] = useState([])
-    const {id}= useParams();  
+    
     
     
     function handleOnDelete(id){

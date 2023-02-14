@@ -41,8 +41,7 @@ function App() {
             <Route path="/login" element={<Login/>}/>
             <Route path="/signup" element={<Signup/>}/>
             <Route path='/blog/:id' element={<Blog/>}/>
-            <Route path='/userprofile' element={<UserProfile/>}/>
-
+            <Route path='/userprofile/:id' element={<UserProfile/>}/>
             <Route path='/new' element={<ProtectRoute><CreatePost/></ProtectRoute>}/>
             <Route path='/dashboard' element={<ProtectRoute><Dashboard/></ProtectRoute>}/>
             <Route path='/profile' element={<ProtectRoute><Profile /></ProtectRoute>}/>

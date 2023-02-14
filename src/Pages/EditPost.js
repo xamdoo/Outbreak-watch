@@ -8,37 +8,36 @@ import { toast } from 'react-toastify'
 function EditPost() {
     const token = localStorage.getItem("token")
     const [loading, setLoading] = useState(true)
-    const [title, setTitle] = useState('')
-    const [content, setContent] = useState('')
-    const [tags, setTags] = useState('')
-    const {id} = useParams()
+    const [inputs, setInputs] = useState({})
     const navigate = useNavigate()
+    const {id} = useParams()
 
-    useEffect(()=>{
-        axios(`http://localhost:8000/blog/${id}`,{
-            headers:{
-                Authorization: token
-            }
+    useEffect(() => {
+        axios
+        .get(`http://localhost:8000/blog/${id}`, {
+            headers: {
+            Authorization: token,
+            },
         })
-        .then((res)=>{
-            setTitle(res.data.blog.title)
-            setTags(res.data.blog.tags)
-            setContent(res.data.blog.content)
-            setLoading(false)
-        }).catch((e)=>{
-            console.log(e)
+        .then((res) => {
+            setInputs(res.data.blog);
+            setLoading(false);
         })
+        .catch((e) => {
+            console.log(e);
+        });
         if(loading) return
     },[]);
 
     function updatePost(event){
         event.preventDefault();
-        const token = localStorage.getItem("token")
-        axios.put(`http://localhost:8000/blog/${id}`,{
-            title:title,
-            tags:tags,
-            content:content
-        },{headers:{authorization:token}})
+        const formData = new FormData();
+        formData.append("file", inputs.file);
+        formData.append("title", inputs.title);
+        formData.append("content", inputs.content);
+        formData.append("tags", inputs.tags);
+
+        axios.put(`http://localhost:8000/blog/${id}`,formData,{headers:{authorization:token}, "Content-Type": "multipart/form-data"})
         .then(()=>{
             toast.success("Blog Edited")
             navigate("/dashboard")
@@ -52,25 +51,31 @@ function EditPost() {
         <div className='bg-gradient-to-bl from-red-50 to-slate-200 h-screen border'>
             <div className=' w-2/3 rounded-lg bg-white text-gray-800 shadow-sm ml-20 mt-8 pb-24'>
                 <div className='p-10 rounded-lg rounded-0 space-y-5 ml-10'>
-                    <input id="cover-image-input" type="file" accept="image/*" data-max-file-size-mb="25" />
+                    <input id="cover-image-input" type="file"
+                    onChange={(e)=>{
+                        setInputs({...inputs,file:e.target.files[0]})
+                    }}/>
                     <div className='flex flex-col'>
                         <textarea placeholder='New post title here...' className="font-bold text-4xl font-serif outline-none text-black"
-                        value={title}
+                        value={inputs.title}
                         onChange={(e)=>{
-                            setTitle(e.target.value)
+                            setInputs({...inputs,title:e.target.value})
                         }}/>
-                        <textarea placeholder='Add up to 4 tags...' className='outline-none -mt-6' value={tags} onChange={(e)=>{
+                        <textarea placeholder='Add up to 4 tags...' className='outline-none -mt-6' 
+                        value={inputs.tags}
+                        onChange={(e)=>{
                             const tagArray = e.target.value.split(',').filter(Boolean);
                             if (tagArray.length <= 4) {
-                                setTags(tagArray);
+                                setInputs({...inputs,tags: tagArray});
                             }
-                        }}/>
+                        }}
+                        />
                     </div>
                     <div>
                         <textarea placeholder='Write your post content here...' className='h-full w-full outline-none font-mono font-normal whitespace-pre-wrap mt-2 py-4'
-                        value={content}
+                        value={inputs.content}
                         onChange={(e)=>{
-                            setContent(e.target.value)
+                            setInputs({...inputs,content:e.target.value})
                         }}/>
                     </div>
                 </div>

@@ -20,14 +20,15 @@ function Blog(){
         .then((res)=>{
             setBlog(res.data.blog)
             setLoading(false)
-        }).catch((e)=>[
+        }).catch((e)=>
             console.log(e)
-        ])
+        )
     })
     if(loading) return
+
     return (
         <div className="flex my-5 space-x-5">
-            <BlogContent blog={blog}/>
+            <BlogContent blog={blog} />
             <BlogAuthor user={blog.user}/>
         </div>
     )

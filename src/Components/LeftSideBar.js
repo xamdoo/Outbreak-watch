@@ -80,11 +80,11 @@ function LeftSideBar() {
                         <span>Guides</span>
                     </li>
                 </ul>
-                <nav className=" w-2/3 py-2 mt-4 ml-8">
+                <nav className=" w-3/4 py-2 mt-4 ml-8">
                     <header className=" flex items-center justify-between">
                     <h2 className="text-md font-bold">Popular Tags</h2>
                     </header>
-                    <div className=" gap-1 mb-2 mt-3 ml-2 flex flex-col overflow-y-scroll h-44 scrollbar-purple-500 scrollbar-w-2">
+                    <div className=" gap-1 mt-3 ml-2 flex flex-col overflow-y-scroll h-48 scrollbar-purple-50">
                         <a href="/" className= "hover:bg-red-200 mr-1 p-1">#healthmanagement</a>
                         <a href="/" className=" hover:bg-red-200 mr-1 p-1">#SDGs</a>
                         <a href="/" className=" hover:bg-red-200 mr-1 p-1">#communityhealth</a>

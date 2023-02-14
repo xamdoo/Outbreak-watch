@@ -3,7 +3,7 @@ import React from 'react'
 function BlogTitle() {
     return (
         <div>
-            <main className="flex p-3 mr-80 mt-3">
+            <main className="flex p-3 mr-80 mt-1">
                 <header className='flex content-start'>
                     <nav className="flex">
                     <ul className="flex items-start">

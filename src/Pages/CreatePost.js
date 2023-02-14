@@ -4,13 +4,19 @@ import axios from 'axios'
 import {toast} from 'react-toastify'
 import { useNavigate } from 'react-router-dom'
 
+
 export default function CreatePost(){
     const [inputs, setInputs] = useState({})
     const navigate = useNavigate()
-    
     function handleOnPublish(){
+        const formData = new FormData();
+        formData.append("file", inputs.file);
+        formData.append("title", inputs.title);
+        formData.append("content", inputs.content);
+        formData.append("tags", inputs.tags);
+
         const token = localStorage.getItem("token")
-        axios.post("http://localhost:8000/blog",inputs,{headers:{authorization:token}})
+        axios.post("http://localhost:8000/blog", formData, {headers:{authorization:token, "Content-Type": "multipart/form-data"}})
         .then(()=>{
             toast.success("New Blog Posted")
             navigate("/dashboard")
@@ -24,7 +30,10 @@ export default function CreatePost(){
         <div className='bg-gradient-to-bl from-red-50 to-slate-200 h-screen border'>
             <div className=' w-2/3 rounded-lg bg-white text-gray-800 shadow-sm ml-20 mt-8 pb-24'>
                 <div className='p-10 rounded-lg rounded-0 space-y-5 ml-10'>
-                    <input id="cover-image-input" type="file" accept="image/*" data-max-file-size-mb="25" />
+                    <input id="cover-image-input" type="file"
+                    onChange={(e)=>{
+                        setInputs({...inputs,file:e.target.files[0]})
+                    }}/>
                     <div className='flex flex-col'>
                         <textarea placeholder='New post title here...' className="font-bold text-4xl font-serif outline-none text-black"
                         onChange={(e)=>{

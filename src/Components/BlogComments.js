@@ -11,6 +11,22 @@ function BlogComments(){
     const [comment, setComment] = useState("");
     const [comments, setComments] = useState([])
     const token = localStorage.getItem("token")
+    const [image, setImage] = useState(null);
+
+    useEffect(() => {
+        axios
+        .get(`http://localhost:8000/auth/user`, {
+            headers: {
+            Authorization: token,
+            },
+        })
+        .then((res) => {
+            setImage(`http://localhost:8000/${res.data.user.file}`)
+        })
+        .catch((e) => {
+            console.log(e);
+        });
+    });
 
     useEffect(()=>{
         axios.get(`http://localhost:8000/comment/${id}`)
@@ -42,8 +58,8 @@ function BlogComments(){
             {user &&
             <div className="py-5">
                 <div className="flex space-x-2">
-                <div className="h-12 w-12">               
-                    <img className="rounded-full" src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8dXNlcnxlbnwwfHwwfHw%3D&w=1000&q=80" alt=""/>
+                <div className="">               
+                    <img className="rounded-full h-16 w-16" src={image}  alt=""/>
                 </div>
                     <textarea className="border w-full rounded-md p-2" placeholder="Add to the discussion" 
                     onChange={(e)=>setComment(e.target.value)}></textarea>
@@ -53,7 +69,7 @@ function BlogComments(){
                 </div>
             </div>
             }
-            {comments.map((comment)=> <Comment data={comment}/>)}
+            {comments.map((comment)=> <Comment data={comment} key={comment._id}/>)}
             
         </div>
     )
